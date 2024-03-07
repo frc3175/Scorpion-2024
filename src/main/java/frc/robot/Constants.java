@@ -27,7 +27,7 @@ public final class Constants {
 
         /* Chosen Module */
         public static final COTSFalconSwerveConstants chosenModule = 
-            COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDS_MK4i_L2_Plus);
+            COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDS_MK4i_L5);
 
         /* Drivetrain Constants */
         public static final double TRACK_WIDTH = Units.inchesToMeters(20.75);
@@ -43,7 +43,7 @@ public final class Constants {
 
         public static final SwerveDriveKinematics SWERVE_KINEMATICS = new SwerveDriveKinematics(moduleTranslations);
 
-        public static final double DRIVETRAIN_RADIUS = Units.inchesToMeters(14.67247);//TODO: fix this
+        public static final double DRIVETRAIN_RADIUS = Units.inchesToMeters(14.67247);
 
         /* Module Gear Ratios */
         public static final double DRIVE_GEAR_RATIO = chosenModule.driveGearRatio;
@@ -90,7 +90,7 @@ public final class Constants {
 
         /* Swerve Profiling Values */
         /** Meters per Second */
-        public static final double MAX_SPEED = Units.feetToMeters(17.1); //TODO: This must be tuned to specific robot
+        public static final double MAX_SPEED = Units.feetToMeters(23.25);
         /** Radians per Second */
         public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12 * 0.5;
 
