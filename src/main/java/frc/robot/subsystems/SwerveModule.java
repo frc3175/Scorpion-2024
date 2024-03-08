@@ -28,8 +28,8 @@ public class SwerveModule {
     private final SimpleMotorFeedforward driveFeedForward = new SimpleMotorFeedforward(Constants.DRIVE_S, Constants.DRIVE_V, Constants.DRIVE_A);
 
     /* drive motor control requests */
-    private final DutyCycleOut driveDutyCycle = new DutyCycleOut(0).withEnableFOC(false);
-    private final VelocityVoltage driveVelocity = new VelocityVoltage(0).withEnableFOC(false);
+    private final DutyCycleOut driveDutyCycle = new DutyCycleOut(0).withEnableFOC(true);
+    private final VelocityVoltage driveVelocity = new VelocityVoltage(0).withEnableFOC(true);
 
     /* angle motor control requests */
     private final PositionVoltage anglePosition = new PositionVoltage(0);
