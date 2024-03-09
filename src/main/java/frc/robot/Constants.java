@@ -234,7 +234,7 @@ public final class Constants {
     public static final double SHOOTER_A = 0;
 
     /* Shooter Velocities - Rotations per Second */
-    public static final double SHOOTER_SHOOT = 70;
+    public static final double SHOOTER_SHOOT = 50;
     public static final double SHOOTER_AMP = 0;
     public static final double SHOOTER_RESET = 0;
     public static final double SHOOTER_OUTTAKE = 70;
