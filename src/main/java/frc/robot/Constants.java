@@ -234,7 +234,7 @@ public final class Constants {
     public static final double SHOOTER_A = 0;
 
     /* Shooter Velocities - Rotations per Second */
-    public static final double SHOOTER_SHOOT = 50;
+    public static final double SHOOTER_SHOOT = 70;
     public static final double SHOOTER_AMP = 0;
     public static final double SHOOTER_RESET = 0;
     public static final double SHOOTER_OUTTAKE = 70;
@@ -272,7 +272,7 @@ public final class Constants {
     public static final double SHOOTER_PIVOT_SHOOT = 0; //2.70 for robot distance
     public static final double SHOOTER_PIVOT_AMP = 17; //16.5
     public static final double SHOOTER_PIVOT_CLIMB = 16.5;
-    public static final double SHOOTER_PIVOT_ROBOT_DISTANCE = 3.5;
+    public static final double SHOOTER_PIVOT_ROBOT_DISTANCE = 3.4;
     public static final double SHOOTER_PIVOT_PODIUM = 5.52;
     public static final double AMP_BOOP = 21;
 
