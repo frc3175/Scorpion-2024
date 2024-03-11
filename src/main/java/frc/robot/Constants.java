@@ -408,6 +408,16 @@ public final class Constants {
 
     public static final int CANDLE_ID = 6;
 
+    /*============================
+                Vision
+    ==============================*/
+
+    public static final int PRIORITY_ID = 1; //TODO: adjust
+    public static final double LIMELIGHT_MOUNTING_ANGLE = 0; //TODO: adjust
+    public static final double LIMELIGHT_LENS_HEIGHT = 0; //TODO: adjust
+    public static final double TARGET_HEIGHT = 0; //TODO: adjust
+
+
 
 
 
