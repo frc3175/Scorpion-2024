@@ -160,8 +160,8 @@ public final class CTREConfigs {
         var shooterPivotFeedback = shooterPivotFXConfig.Feedback;
         /* shooterPivotFeedback.FeedbackRemoteSensorID = Constants.SHOOTER_CANCODER_ID;
         shooterPivotFeedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
-        shooterPivotFeedback.SensorToMechanismRatio = 0.4; //TODO: get from max
-        shooterPivotFeedback.RotorToSensorRatio = 0.1; //TODO: WRONG get from max */
+        shooterPivotFeedback.SensorToMechanismRatio = 0.4;
+        shooterPivotFeedback.RotorToSensorRatio = 0.1; */
  
         /*============================
                Shooter CANCoder
