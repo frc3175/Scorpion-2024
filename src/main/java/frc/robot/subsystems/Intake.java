@@ -2,17 +2,18 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
-import com.ctre.phoenix6.controls.MotionMagicDutyCycle;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.util.InterpolatingTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
+@SuppressWarnings("all")
 public class Intake extends SubsystemBase {
 
     private TalonFX m_intake;
@@ -24,15 +25,27 @@ public class Intake extends SubsystemBase {
     private PositionDutyCycle intakePivotPosition = new PositionDutyCycle(0);
     private DutyCycleOut intakePivotPercentOutput = new DutyCycleOut(0);
 
+    private InterpolatingTreeMap<Double, Double> intakePivotTable = new InterpolatingTreeMap<>();
+
     public Intake() {
 
         m_intake = new TalonFX(Constants.INTAKE_ID, "elevatoryiboi");
         m_intakePivot = new TalonFX(Constants.INTAKE_PIVOT_ID, "elevatoryiboi");
         m_intakeEncoder = new CANcoder(Constants.INTAKE_CANCODER_ID, "elevatoryiboi");
 
+        intakePivotTable.put(null, null);
+
         configIntakeCANCoder();
         configIntakeMotor();
         configIntakePivotMotor();
+
+    }
+
+    public void interpolateIntake(double ty) {
+
+        double position = intakePivotTable.get(ty);
+        intakePivotPosition.Position = position;
+        m_intakePivot.setControl(intakePivotPosition);
 
     }
 

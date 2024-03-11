@@ -71,6 +71,7 @@ public class RobotContainer {
     private final Climber m_climber = new Climber();
     private final LED m_Led = new LED();
     private final RobotState m_robotState = new RobotState();
+    private final Limelight m_limelight = new Limelight();
 
     /* Auton Chooser */
     private final SendableChooser<Command> autoChooser;
@@ -132,9 +133,11 @@ public class RobotContainer {
         reset.onTrue(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
 
         x.onTrue(new RobotDistanceShot(m_intake, m_shooter));
+        x.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
         x.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        b.onTrue(new PodiumShot(m_intake, m_shooter));
+        b.onTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight));
+        b.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
 
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));

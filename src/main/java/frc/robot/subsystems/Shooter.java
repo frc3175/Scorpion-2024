@@ -6,11 +6,14 @@ import com.ctre.phoenix6.controls.MotionMagicDutyCycle;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
+import edu.wpi.first.util.InterpolatingTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
+@SuppressWarnings("all")
 public class Shooter extends SubsystemBase {
 
     private TalonFX m_shooter;
@@ -21,13 +24,25 @@ public class Shooter extends SubsystemBase {
     private MotionMagicDutyCycle shooterPivotPosition = new MotionMagicDutyCycle(0);
     private DutyCycleOut shooterPivotPercentOutput = new DutyCycleOut(0);
 
+    private InterpolatingTreeMap<Double, Double> shooterPivotTable = new InterpolatingTreeMap<>();
+
     public Shooter() {
 
         m_shooter = new TalonFX(Constants.SHOOTER_ID, "elevatoryiboi");
         m_shooterPivot = new TalonFX(Constants.SHOOTER_PIVOT_ID, "elevatoryiboi");
 
+        shooterPivotTable.put(null, null);
+
         configShooterMotor();
         configShooterPivotMotor();
+
+    }
+
+    public void shooterInterpolate(double ty) {
+
+        double position = shooterPivotTable.get(ty);
+        shooterPivotPosition.Position = position;
+        m_shooterPivot.setControl(shooterPivotPosition);
 
     }
 
