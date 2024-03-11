@@ -270,7 +270,7 @@ public final class Constants {
 
     /* Shooter Pivot Positions */
     public static final int SHOOTER_PIVOT_RESET = 0;
-    public static final double SHOOTER_PIVOT_SHOOT = 0; //2.70 for robot distance
+    public static final double SHOOTER_PIVOT_SHOOT = 0;
     public static final double SHOOTER_PIVOT_AMP = 17; //16.5
     public static final double SHOOTER_PIVOT_CLIMB = 16.5;
     public static final double SHOOTER_PIVOT_ROBOT_DISTANCE = 3.4;
@@ -413,10 +413,10 @@ public final class Constants {
                 Vision
     ==============================*/
 
-    public static final int PRIORITY_ID = 1; //TODO: adjust
-    public static final double LIMELIGHT_MOUNTING_ANGLE = 0; //TODO: adjust
-    public static final double LIMELIGHT_LENS_HEIGHT = 0; //TODO: adjust
-    public static final double TARGET_HEIGHT = 0; //TODO: adjust
+    public static final int PRIORITY_ID = 7;
+    public static final double LIMELIGHT_MOUNTING_ANGLE = 28;
+    public static final double LIMELIGHT_LENS_HEIGHT = 21.25;
+    public static final double TARGET_HEIGHT = 53.88;
 
 
 

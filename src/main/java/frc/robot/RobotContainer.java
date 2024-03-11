@@ -136,8 +136,8 @@ public class RobotContainer {
         x.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
         x.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        b.onTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight));
-        b.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
+        b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight));
+        //b.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
 
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));

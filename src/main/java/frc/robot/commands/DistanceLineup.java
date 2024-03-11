@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
@@ -28,6 +29,8 @@ public class DistanceLineup extends Command{
     public void execute() {
 
         double ty = m_limelight.getDistanceToTarget();
+
+        SmartDashboard.putNumber("distance to target subsystem", ty);
 
         m_shooter.shooterInterpolate(ty);
         m_intake.interpolateIntake(ty);

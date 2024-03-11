@@ -24,14 +24,16 @@ public class Shooter extends SubsystemBase {
     private MotionMagicDutyCycle shooterPivotPosition = new MotionMagicDutyCycle(0);
     private DutyCycleOut shooterPivotPercentOutput = new DutyCycleOut(0);
 
-    private InterpolatingTreeMap<Double, Double> shooterPivotTable = new InterpolatingTreeMap<>();
+   private InterpolatingTreeMap<Double, Double> shooterPivotTable = new InterpolatingTreeMap<>();
 
     public Shooter() {
 
         m_shooter = new TalonFX(Constants.SHOOTER_ID, "elevatoryiboi");
         m_shooterPivot = new TalonFX(Constants.SHOOTER_PIVOT_ID, "elevatoryiboi");
 
-        shooterPivotTable.put(null, null);
+        shooterPivotTable.put(39.25, 0.0);
+        shooterPivotTable.put(72.25, 3.4);
+        shooterPivotTable.put(144.25, 5.52);
 
         configShooterMotor();
         configShooterPivotMotor();

@@ -33,7 +33,9 @@ public class Intake extends SubsystemBase {
         m_intakePivot = new TalonFX(Constants.INTAKE_PIVOT_ID, "elevatoryiboi");
         m_intakeEncoder = new CANcoder(Constants.INTAKE_CANCODER_ID, "elevatoryiboi");
 
-        intakePivotTable.put(null, null);
+        intakePivotTable.put(39.25, 0.0);
+        intakePivotTable.put(72.25, 2.1);
+        intakePivotTable.put(144.25, 2.7);
 
         configIntakeCANCoder();
         configIntakeMotor();
