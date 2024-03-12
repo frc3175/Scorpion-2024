@@ -50,10 +50,10 @@ public class LED extends SubsystemBase {
 
   public enum CurrentState {
 
-    INTAKE_HAS_PIECE(100, 0, 100, false),
+    INTAKE_HAS_PIECE(140, 32, 210, false),
     RESET(255, 0, 0, false),
     INTAKING_GOT_PIECE(0, 255, 0, false),
-    SHOOTER_READY(0, 255, 0, true);
+    SHOOTER_READY(0, 255, 0, false);
 
     public int r;
     public int g;
