@@ -166,6 +166,7 @@ public class Intake extends SubsystemBase {
         SmartDashboard.putNumber("Intake Pivot Position", getIntakePivotPosition());
         SmartDashboard.putNumber("Intake Encoder Position", getIntakeEncoderPosition());
         SmartDashboard.putNumber("Intake Pivot Rotor Position", getIntakePivotRotorPosition());
+        SmartDashboard.putNumber("Intake current", m_intake.getStatorCurrent().getValueAsDouble());
 
     }
     
