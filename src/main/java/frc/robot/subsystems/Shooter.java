@@ -26,6 +26,8 @@ public class Shooter extends SubsystemBase {
 
    private InterpolatingTreeMap<Double, Double> shooterPivotTable = new InterpolatingTreeMap<>();
 
+   private boolean isInInterpolationMode;
+
     public Shooter() {
 
         m_shooter = new TalonFX(Constants.SHOOTER_ID, "elevatoryiboi");
@@ -37,6 +39,20 @@ public class Shooter extends SubsystemBase {
 
         configShooterMotor();
         configShooterPivotMotor();
+
+        isInInterpolationMode = false;
+
+    }
+
+    public void setInteroplationMode(boolean isInterpolating) {
+
+        isInInterpolationMode = isInterpolating;
+
+    }
+
+    public boolean getInterpolationMode() {
+
+        return isInInterpolationMode;
 
     }
 
@@ -106,7 +122,7 @@ public class Shooter extends SubsystemBase {
 
     public double getShooterVelocity() {
 
-        return m_shooter.getVelocity().getValueAsDouble();
+        return m_shooter.getRotorVelocity().getValueAsDouble();
 
     }
 

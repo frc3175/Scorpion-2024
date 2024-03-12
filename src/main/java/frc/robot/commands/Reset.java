@@ -45,6 +45,8 @@ public class Reset extends Command {
         m_timer.reset();
         m_timer.start();
 
+        m_shooter.setInteroplationMode(false);
+
     }
 
     @Override 

@@ -420,6 +420,12 @@ public final class Constants {
     public static final double LIMELIGHT_LENS_HEIGHT = 21.25;
     public static final double TARGET_HEIGHT = 53.88;
 
+    public static final double LIMELIGHT_P = 0.014;
+
+    public static final double ANGLE_TOLERANCE = 1.5;
+
+    public static final double SHOOTER_SPEED_THRESHOLD = 45;
+
 
 
 

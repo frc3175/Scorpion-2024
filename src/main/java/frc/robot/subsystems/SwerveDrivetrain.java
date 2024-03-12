@@ -118,7 +118,22 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         } 
 
-    }    
+    }  
+    
+    public void lockWheels() {
+
+        final SwerveModuleState[] swerveModuleStates = new SwerveModuleState[] {
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(45)),
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(315)),
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(135)),
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(225))
+        };
+
+        for(SwerveModule mod : m_swerveMods){
+                mod.setDesiredState(swerveModuleStates[mod.moduleNumber], true);
+         }
+
+    }
 
     /* Used by SwerveControllerCommand in Auto */
     public void setModuleStates(SwerveModuleState[] desiredStates) {

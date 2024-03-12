@@ -23,6 +23,8 @@ public class IntakeNote extends Command {
         m_robotState = robotState;
         m_led = led;
 
+        m_timer = new Timer();
+
         addRequirements(m_intake, m_robotState, m_led);
 
     }
