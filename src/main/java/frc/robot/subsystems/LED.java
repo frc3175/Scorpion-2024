@@ -10,12 +10,14 @@ public class LED extends SubsystemBase {
 
   private CANdle m_candle;
   private boolean configured = false;
+  private CurrentState m_currentState;
 
   public LED() {
 
     m_candle = new CANdle(Constants.CANDLE_ID, "elevatoryiboi");
     Configure();
     setLEDs(255, 0, 0);
+    setCurrentState(CurrentState.RESET);
       
   }
 
@@ -32,6 +34,38 @@ public class LED extends SubsystemBase {
     }
 
         
+  }
+
+  public void setCurrentState(CurrentState state) {
+
+    m_currentState = state;
+
+  }
+
+  public CurrentState getCurrentState() {
+
+    return m_currentState;
+
+  }
+
+  public enum CurrentState {
+
+    INTAKE_HAS_PIECE(100, 0, 100, false),
+    RESET(255, 0, 0, false),
+    INTAKING_GOT_PIECE(0, 255, 0, false),
+    SHOOTER_READY(0, 255, 0, true);
+
+    public int r;
+    public int g;
+    public int b;
+    public boolean isBlinking;
+    private CurrentState(int r, int g, int b, boolean isBlinking) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.isBlinking = isBlinking;
+    }
+
   }
 
   @Override

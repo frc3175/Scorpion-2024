@@ -142,6 +142,12 @@ public class Intake extends SubsystemBase {
 
     }
 
+    public double getIntakeStatorCurrent() {
+
+        return m_intake.getStatorCurrent().getValueAsDouble();
+
+    }
+
     public enum IntakeState {
 
         RESET(Constants.INTAKE_PIVOT_RESET, Constants.INTAKE_RESET),
