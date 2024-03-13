@@ -44,13 +44,14 @@ public class DistanceLineup extends Command{
 
         double ty = m_limelight.getDistanceToTarget();
 
-        SmartDashboard.putNumber("distance to target subsystem", ty);
+            SmartDashboard.putNumber("distance to target subsystem", ty);
 
-        m_shooter.shooterInterpolate(ty);
-        m_intake.interpolateIntake(ty);
+            m_shooter.shooterInterpolate(ty);
+            m_intake.interpolateIntake(ty);
 
-        m_led.setCurrentState(CurrentState.SHOOTER_READY);
-        m_led.setLEDs(m_led.getCurrentState().r, m_led.getCurrentState().g, m_led.getCurrentState().b);
+            m_led.setCurrentState(CurrentState.SHOOTER_READY);
+            m_led.setLEDs(m_led.getCurrentState().r, m_led.getCurrentState().g, m_led.getCurrentState().b);
+
 
     }
     

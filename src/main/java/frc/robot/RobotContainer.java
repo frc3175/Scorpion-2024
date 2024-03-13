@@ -127,11 +127,10 @@ public class RobotContainer {
         intake.onTrue(new IntakeNote(m_intake, m_robotState, m_Led));
         intake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
-        spinUpShooter.onTrue(new SpinUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        spinUpShooter.onTrue(new SpinUpAndInterpolate(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led, m_limelight));
         spinUpShooter.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         outtake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState, m_limelight, m_Led, m_swerveDrivetrain));
-       // outtake.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
         outtake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         amp.onTrue(new Amp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
