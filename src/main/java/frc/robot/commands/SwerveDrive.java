@@ -23,6 +23,8 @@ public class SwerveDrive extends Command {
     private BooleanSupplier m_isEvading;
     private BooleanSupplier m_isLocked;
     private BooleanSupplier m_isRotatingFast;
+    private DoubleSupplier m_tx;
+    private DoubleSupplier m_isAligning;
 
     public SwerveDrive(SwerveDrivetrain swerveDrivetrain, 
                        DoubleSupplier translationSup, 
@@ -31,7 +33,9 @@ public class SwerveDrive extends Command {
                        BooleanSupplier robotCentricSup, 
                        BooleanSupplier isEvading,
                        BooleanSupplier isLocked,
-                       BooleanSupplier isRotatingFast) {
+                       BooleanSupplier isRotatingFast,
+                       DoubleSupplier tx,
+                       DoubleSupplier isAligning) {
 
         m_swerveDrivetrain = swerveDrivetrain;
         addRequirements(m_swerveDrivetrain);
@@ -43,6 +47,8 @@ public class SwerveDrive extends Command {
         m_isEvading = isEvading;
         m_isLocked = isLocked;
         m_isRotatingFast = isRotatingFast;
+        m_tx = tx;
+        m_isAligning = isAligning;
 
         m_xAxisLimiter = new SlewRateLimiter(Constants.RATE_LIMITER);
         m_yAxisLimiter = new SlewRateLimiter(Constants.RATE_LIMITER);
@@ -72,10 +78,26 @@ public class SwerveDrive extends Command {
         double xAxisFiltered = m_xAxisLimiter.calculate(xAxisSquared);
         double yAxisFiltered = m_yAxisLimiter.calculate(yAxisSquared);
 
+        boolean isAligning;
+
+        if(m_isAligning.getAsDouble() > 0.1) {
+            isAligning = true;
+        } else {
+            isAligning = false;
+        }
+
+        double rAxisActual;
+
+        if(isAligning) {
+            rAxisActual = m_swerveDrivetrain.alignToTarget(m_tx.getAsDouble());
+        } else {
+            rAxisActual = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY * -1;
+        }
+
         /* Drive */
         m_swerveDrivetrain.drive(
             new Translation2d(-xAxisFiltered, -yAxisFiltered).times(Constants.MAX_SPEED), 
-            -rAxisSquared * Constants.MAX_ANGULAR_VELOCITY, 
+            rAxisActual, 
             !m_robotCentricSup.getAsBoolean(), 
             true,
             m_isEvading.getAsBoolean(),

@@ -86,6 +86,14 @@ public class Limelight extends SubsystemBase {
 
     }
 
+    public double getTX() {
+
+        double localTX = tx.getDouble(0.0);
+
+        return localTX;
+
+    }
+
     public boolean isAtTarget() {
 
         double angle = tx.getDouble(0.0);

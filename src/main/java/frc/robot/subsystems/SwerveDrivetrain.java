@@ -170,6 +170,24 @@ public class SwerveDrivetrain extends SubsystemBase {
         }
     }
 
+    public double alignToTarget(double tx) {
+
+        double kP = Constants.LIMELIGHT_P;
+
+        // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
+        // your limelight 3 feed, tx should return roughly 31 degrees.
+        double targetingAngularVelocity = tx * kP;
+
+        // convert to radians per second for our drive method
+        targetingAngularVelocity *= (Constants.MAX_ANGULAR_VELOCITY);
+
+        //invert since tx is positive when the target is to the right of the crosshair
+        targetingAngularVelocity *= -1.0;
+
+        return targetingAngularVelocity;
+
+    }
+
     public void driveRobotRelative(ChassisSpeeds robotRelativeSpeeds) {
 
         ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
