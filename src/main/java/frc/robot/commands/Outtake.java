@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Feeder;
@@ -57,33 +56,8 @@ public class Outtake extends Command {
 
         } else {
 
-            if(m_shooter.getInterpolationMode()) {
-
-                double rotation = m_limelight.aimToTarget();
-
-                m_drivetrain.drive(
-                new Translation2d(0, 0).times(Constants.MAX_SPEED), 
-                rotation, 
-                false,
-                true,
-                false,
-                false
-                );
-
-                if(m_limelight.isAtTarget()) {
-
-                    m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT);
-
-                    isFinished = true;
-
-                }
-
-            } else {
-
-                m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT);
-                isFinished = true;
-
-            }
+            m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT);
+            isFinished = true;
 
         }
 

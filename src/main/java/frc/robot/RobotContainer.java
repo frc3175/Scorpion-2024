@@ -34,11 +34,12 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton isEvading = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-    //private final JoystickButton isLocked = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final POVButton isRotatingFast = new POVButton(driver, 270);
     private final POVButton shooterIn = new POVButton(driver, 90);
     private final JoystickButton driverB = new JoystickButton(driver, XboxController.Button.kB.value);
+    private final JoystickButton forceOuttake = new JoystickButton(driver, XboxController.Button.kY.value);
+    private final int alignAxis = XboxController.Axis.kRightTrigger.value;
 
     /* Operator Buttons */
     private final JoystickButton amp = new JoystickButton(operator, XboxController.Button.kY.value);
@@ -50,7 +51,6 @@ public class RobotContainer {
     private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
     private final JoystickButton x = new JoystickButton(operator, XboxController.Button.kX.value);
     private final JoystickButton b = new JoystickButton(operator, XboxController.Button.kB.value);
-    private final JoystickButton y = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
     private final JoystickButton rightJoystick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
 
@@ -89,7 +89,9 @@ public class RobotContainer {
                 () -> false,
                 () -> isEvading.getAsBoolean(),
                 () -> false,
-                () -> isRotatingFast.getAsBoolean()
+                () -> isRotatingFast.getAsBoolean(),
+                () -> m_limelight.getTX(),
+                () -> driver.getRawAxis(alignAxis)
             )
         );
 
@@ -125,11 +127,10 @@ public class RobotContainer {
         intake.onTrue(new IntakeNote(m_intake, m_robotState, m_Led));
         intake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
-        spinUpShooter.onTrue(new SpinUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        spinUpShooter.onTrue(new SpinUpAndInterpolate(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led, m_limelight));
         spinUpShooter.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         outtake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState, m_limelight, m_Led, m_swerveDrivetrain));
-       // outtake.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
         outtake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         amp.onTrue(new Amp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
@@ -142,8 +143,8 @@ public class RobotContainer {
         b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight, m_Led));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        y.onTrue(new InstantCommand(() -> m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT)));
-        y.onFalse(new InstantCommand(() -> m_intake.intakePercentOutput(0)));
+        forceOuttake.onTrue(new InstantCommand(() -> m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT)));
+        forceOuttake.onFalse(new InstantCommand(() -> m_intake.intakePercentOutput(0)));
 
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));
         back.onTrue(new InstantCommand(() -> m_feeder.feederRun(5)));

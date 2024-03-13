@@ -236,6 +236,7 @@ public final class Constants {
     /* Shooter Velocities - Rotations per Second */
     public static final double SHOOTER_SHOOT = 50;
     public static final double SHOOTER_FAST_SPEED = 70;
+    public static final double SHOOTER_FASTEST_SPEED = 80;
     public static final double SHOOTER_AMP = 0;
     public static final double SHOOTER_RESET = 0;
     public static final double SHOOTER_OUTTAKE = 70;
@@ -421,9 +422,9 @@ public final class Constants {
     public static final double LIMELIGHT_LENS_HEIGHT = 21.25;
     public static final double TARGET_HEIGHT = 53.88;
 
-    public static final double LIMELIGHT_P = 0.014;
+    public static final double LIMELIGHT_P = 0.011;
 
-    public static final double ANGLE_TOLERANCE = 1.5;
+    public static final double ANGLE_TOLERANCE = 5;
 
     public static final double SHOOTER_SPEED_THRESHOLD = 45;
 
