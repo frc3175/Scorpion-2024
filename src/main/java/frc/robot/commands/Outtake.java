@@ -10,7 +10,6 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrivetrain;
-import frc.robot.subsystems.LED.CurrentState;
 
 public class Outtake extends Command {
 
@@ -60,7 +59,7 @@ public class Outtake extends Command {
 
             if(m_shooter.getInterpolationMode()) {
 
-                            double rotation = m_limelight.aimToTarget();
+                double rotation = m_limelight.aimToTarget();
 
                 m_drivetrain.drive(
                 new Translation2d(0, 0).times(Constants.MAX_SPEED), 
@@ -72,8 +71,6 @@ public class Outtake extends Command {
                 );
 
                 if(m_limelight.isAtTarget()) {
-
-                    //m_drivetrain.lockWheels();
 
                     m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT);
 
