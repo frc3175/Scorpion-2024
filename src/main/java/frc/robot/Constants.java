@@ -415,7 +415,8 @@ public final class Constants {
                 Vision
     ==============================*/
 
-    public static final int PRIORITY_ID = 7;
+    public static final int PRIORITY_ID_RED = 4;
+    public static final int PRIORITY_ID_BLUE = 7;
     public static final double LIMELIGHT_MOUNTING_ANGLE = 28;
     public static final double LIMELIGHT_LENS_HEIGHT = 21.25;
     public static final double TARGET_HEIGHT = 53.88;

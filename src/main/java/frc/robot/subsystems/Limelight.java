@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -21,7 +22,20 @@ public class Limelight extends SubsystemBase {
         ty = table.getEntry("ty");
         ta = table.getEntry("ta");
 
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("priorityid").setNumber(Constants.PRIORITY_ID);
+        double priorityID;
+
+        var alliance = DriverStation.getAlliance();
+        if (alliance.isPresent()) {
+            if(alliance.get() == DriverStation.Alliance.Red) {
+                priorityID = Constants.PRIORITY_ID_RED;
+            } else {
+                priorityID = Constants.PRIORITY_ID_BLUE;
+            }
+        } else {
+            priorityID = Constants.PRIORITY_ID_BLUE;
+        }
+
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("priorityid").setNumber(priorityID);
 
     }
 
