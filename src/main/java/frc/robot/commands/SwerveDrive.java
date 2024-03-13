@@ -9,6 +9,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 
@@ -103,5 +104,8 @@ public class SwerveDrive extends Command {
             m_isEvading.getAsBoolean(),
             m_isLocked.getAsBoolean()
         );
+
+        SmartDashboard.putNumber("DRIVETRAIN TX", m_tx.getAsDouble());
+
     }
 }
