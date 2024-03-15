@@ -42,7 +42,7 @@ public class Intake extends SubsystemBase {
         /*
          * 
          * To add a value to the interpolation table, create a new line and copy paste this information
-         * shooterPivotTable.put(0, 1);
+         * intakePivotTable.put(0, 1);
          * Replace the 0 with the distance from the goal
          * Note that this is distance from the actual speeaker, not the distance from the subwoofer
          * Replace the 1 with the shooter pivot setpoint that corresponds to that distance
