@@ -49,13 +49,13 @@ public class Shooter extends SubsystemBase {
          * Testing shooter distance instructions:
          * 1. put controller into test mode (controller 5) 
          * 2. measure the distance from the robot to the SPEAKER (NOT SUBWOOFER)
-         * 3. adjust constants.java lines 353 and 273 to test different shooter pivot and intake angles
+         * 3. adjust constants.java lines 356 and 274 to test different shooter pivot and intake angles
          * 4. adjust robotcontainer.java lines 161 and 163 to whatever shooter speed you want (note that it is in percent output mode)
-         * 5. tune constants.java lines 353 and 273 until satisfied
+         * 5. tune constants.java lines 356 and 274 until satisfied
          * 6. add a line to shooter.java around line 36 following the instructions above
          * 7. add a line to intake.java around line 38 following the instructions above
          * 8. the velocity is automatically increased when vision is activated and the robot is a few inches away from the sub, so don't worry about making the velocity 0
-         * 9. make constants.java lines 353 and 273 zero when finished
+         * 9. make constants.java lines 356 and 274 zero when finished
          * 10. return robotcontainer.java lines 161 and 163 to 0.25
          * 
          */
