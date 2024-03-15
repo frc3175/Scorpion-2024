@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -21,7 +22,20 @@ public class Limelight extends SubsystemBase {
         ty = table.getEntry("ty");
         ta = table.getEntry("ta");
 
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("priorityid").setNumber(Constants.PRIORITY_ID);
+        double priorityID;
+
+        var alliance = DriverStation.getAlliance();
+        if (alliance.isPresent()) {
+            if(alliance.get() == DriverStation.Alliance.Red) {
+                priorityID = Constants.PRIORITY_ID_RED;
+            } else {
+                priorityID = Constants.PRIORITY_ID_BLUE;
+            }
+        } else {
+            priorityID = Constants.PRIORITY_ID_BLUE;
+        }
+
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("priorityid").setNumber(priorityID);
 
     }
 
@@ -54,6 +68,61 @@ public class Limelight extends SubsystemBase {
 
     }
 
+    public double aimToTarget() {
+
+        double kP = Constants.LIMELIGHT_P;
+
+        // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
+        // your limelight 3 feed, tx should return roughly 31 degrees.
+        double targetingAngularVelocity = tx.getDouble(0.0)* kP;
+
+        // convert to radians per second for our drive method
+        targetingAngularVelocity *= (Constants.MAX_ANGULAR_VELOCITY);
+
+        //invert since tx is positive when the target is to the right of the crosshair
+        targetingAngularVelocity *= -1.0;
+
+        return targetingAngularVelocity;
+
+    }
+
+    public double getTX() {
+
+        double localTX = tx.getDouble(0.0);
+
+        return localTX;
+
+    }
+
+    public boolean isAtTarget() {
+
+        double angle = tx.getDouble(0.0);
+
+        if(Math.abs(angle) <= Constants.ANGLE_TOLERANCE && angle != 0) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
+    public boolean hasTarget() {
+
+        double txValue = tx.getDouble(0.0);
+        double tyValue = ty.getDouble(0.0);
+
+        if(txValue == 0.0 && tyValue == 0.0) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
     @Override
     public void periodic() {
 
@@ -68,6 +137,8 @@ public class Limelight extends SubsystemBase {
         SmartDashboard.putNumber("LimelightArea", area);
 
         SmartDashboard.putNumber("Limelight distance", getDistanceToTarget());
+
+        SmartDashboard.putBoolean("is at target", isAtTarget());
 
     }
     

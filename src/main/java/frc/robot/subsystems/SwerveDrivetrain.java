@@ -118,7 +118,22 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         } 
 
-    }    
+    }  
+    
+    public void lockWheels() {
+
+        final SwerveModuleState[] swerveModuleStates = new SwerveModuleState[] {
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(45)),
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(315)),
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(135)),
+                new SwerveModuleState(0.1, Rotation2d.fromDegrees(225))
+        };
+
+        for(SwerveModule mod : m_swerveMods){
+                mod.setDesiredState(swerveModuleStates[mod.moduleNumber], true);
+         }
+
+    }
 
     /* Used by SwerveControllerCommand in Auto */
     public void setModuleStates(SwerveModuleState[] desiredStates) {
@@ -153,6 +168,24 @@ public class SwerveDrivetrain extends SubsystemBase {
         } else {
             return new Translation2d();
         }
+    }
+
+    public double alignToTarget(double tx) {
+
+        double kP = Constants.LIMELIGHT_P;
+
+        // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
+        // your limelight 3 feed, tx should return roughly 31 degrees.
+        double targetingAngularVelocity = tx * kP;
+
+        // convert to radians per second for our drive method
+        targetingAngularVelocity *= (Constants.MAX_ANGULAR_VELOCITY);
+
+        //invert since tx is positive when the target is to the right of the crosshair
+        targetingAngularVelocity *= -1.0;
+
+        return targetingAngularVelocity;
+
     }
 
     public void driveRobotRelative(ChassisSpeeds robotRelativeSpeeds) {

@@ -34,10 +34,12 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton isEvading = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-    //private final JoystickButton isLocked = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final POVButton isRotatingFast = new POVButton(driver, 270);
     private final POVButton shooterIn = new POVButton(driver, 90);
+    private final JoystickButton driverB = new JoystickButton(driver, XboxController.Button.kB.value);
+    private final JoystickButton forceOuttake = new JoystickButton(driver, XboxController.Button.kY.value);
+    private final int alignAxis = XboxController.Axis.kRightTrigger.value;
 
     /* Operator Buttons */
     private final JoystickButton amp = new JoystickButton(operator, XboxController.Button.kY.value);
@@ -87,17 +89,19 @@ public class RobotContainer {
                 () -> false,
                 () -> isEvading.getAsBoolean(),
                 () -> false,
-                () -> isRotatingFast.getAsBoolean()
+                () -> isRotatingFast.getAsBoolean(),
+                () -> m_limelight.getTX(),
+                () -> driver.getRawAxis(alignAxis)
             )
         );
 
         /* Pathplanner Named Commands */
-        NamedCommands.registerCommand("Intake", new IntakeNote(m_intake, m_robotState));
+        NamedCommands.registerCommand("Intake", new IntakeNote(m_intake, m_robotState, m_Led));
         NamedCommands.registerCommand("Reset", new ResetIntake(m_intake, m_robotState));
         NamedCommands.registerCommand("Spin Up Shooter", new SpinUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
         NamedCommands.registerCommand("Shoot", new OuttakeAuto(m_intake, m_robotState));
         NamedCommands.registerCommand("Shoottake", new IntakeAndShoot(m_intake, m_shooter, m_feeder, m_robotState));
-        NamedCommands.registerCommand("Reset All", new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        NamedCommands.registerCommand("Reset All", new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
         NamedCommands.registerCommand("Gyro Offset Amp", new InstantCommand(() -> m_swerveDrivetrain.adjustGyroZeroAmpSide()));
         NamedCommands.registerCommand("Gyro Offset Source", new InstantCommand(() -> m_swerveDrivetrain.adjustGyroZeroSourceSide()));
 
@@ -120,25 +124,27 @@ public class RobotContainer {
         
         zeroGyro.onTrue(new InstantCommand(() -> m_swerveDrivetrain.zeroGyro()));
 
-        intake.onTrue(new IntakeNote(m_intake, m_robotState));
-        intake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        intake.onTrue(new IntakeNote(m_intake, m_robotState, m_Led));
+        intake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
-        spinUpShooter.onTrue(new SpinUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
-        spinUpShooter.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        spinUpShooter.onTrue(new SpinUpAndInterpolate(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led, m_limelight));
+        spinUpShooter.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
-        outtake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState));
-        outtake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        outtake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState, m_limelight, m_Led, m_swerveDrivetrain));
+        outtake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         amp.onTrue(new Amp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
-        reset.onTrue(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        reset.onTrue(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         x.onTrue(new RobotDistanceShot(m_intake, m_shooter));
         x.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
         x.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight));
-        //b.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
+        b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight, m_Led));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
+
+        forceOuttake.onTrue(new InstantCommand(() -> m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT)));
+        forceOuttake.onFalse(new InstantCommand(() -> m_intake.intakePercentOutput(0)));
 
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));
         back.onTrue(new InstantCommand(() -> m_feeder.feederRun(5)));
@@ -156,6 +162,8 @@ public class RobotContainer {
 
         shooterIn.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(0)));
 
+        driverB.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
+
         // Systems Check Buttons
 
         testShooter.onTrue(new InstantCommand(() -> m_shooter.shooterPercentOutput(0.25))); //FIXME: adjust this value if you want to test shooting from distances, THEN RETURN TO 0.25
@@ -166,10 +174,10 @@ public class RobotContainer {
         testShooter.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(0)));
 
         testAmp.onTrue(new Amp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
-        testReset.onTrue(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        testReset.onTrue(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
-        testOuttake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState));
-        testOuttake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        testOuttake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState, m_limelight, m_Led, m_swerveDrivetrain));
+        testOuttake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         testClimbUp.onFalse(new InstantCommand(() -> m_climber.climbPercentOutput(0)));
         testClimbUp.onTrue(new InstantCommand(() -> m_climber.climbPercentOutput(0.2)));
@@ -177,8 +185,8 @@ public class RobotContainer {
         testClimbDown.onTrue(new InstantCommand(() -> m_climber.climbPercentOutput(-0.2)));
         testClimbDown.onFalse(new InstantCommand(() -> m_climber.climbPercentOutput(0)));
         
-        testIntake.onTrue(new IntakeNote(m_intake, m_robotState));
-        testIntake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        testIntake.onTrue(new IntakeNote(m_intake, m_robotState, m_Led));
+        testIntake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         testSprawl.onTrue(new ClimbUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
 
