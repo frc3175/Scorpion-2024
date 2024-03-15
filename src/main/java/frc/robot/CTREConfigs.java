@@ -6,7 +6,6 @@ import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.AbsoluteSensorRangeValue;
-import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 
 public final class CTREConfigs {
 
@@ -157,7 +156,7 @@ public final class CTREConfigs {
         shooterPivotMotionMagic.MotionMagicAcceleration = Constants.SHOOTER_PIVOT_ACCELERATION;
 
         /* Shooter Pivot Feedback Config */
-        var shooterPivotFeedback = shooterPivotFXConfig.Feedback;
+        //var shooterPivotFeedback = shooterPivotFXConfig.Feedback;
         /* shooterPivotFeedback.FeedbackRemoteSensorID = Constants.SHOOTER_CANCODER_ID;
         shooterPivotFeedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
         shooterPivotFeedback.SensorToMechanismRatio = 0.4;
@@ -218,7 +217,7 @@ public final class CTREConfigs {
         intakePivotSlot0.kV = Constants.INTAKE_PIVOT_V;
 
         /* Intake Pivot Feedback Config */
-        var intakePivotFeedback = intakePivotFXConfig.Feedback;
+        //var intakePivotFeedback = intakePivotFXConfig.Feedback;
         /* intakePivotFeedback.FeedbackRemoteSensorID = Constants.INTAKE_CANCODER_ID;
         intakePivotFeedback.FeedbackSensorSource = FeedbackSensorSourceValue.SyncCANcoder;
         intakePivotFeedback.SensorToMechanismRatio = 1;

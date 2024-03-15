@@ -35,7 +35,32 @@ public class Intake extends SubsystemBase {
 
         intakePivotTable.put(39.25, 0.0);
         intakePivotTable.put(72.25, 2.1);
-        intakePivotTable.put(144.25, 2.7);
+        intakePivotTable.put(144.25, 2.7); //FIXME: the values in this line are guesses and inaccurate
+        //FIXME: this is where you add interpolation values. instructions are below
+
+
+        /*
+         * 
+         * To add a value to the interpolation table, create a new line and copy paste this information
+         * shooterPivotTable.put(0, 1);
+         * Replace the 0 with the distance from the goal
+         * Note that this is distance from the actual speeaker, not the distance from the subwoofer
+         * Replace the 1 with the shooter pivot setpoint that corresponds to that distance
+         * 
+         * Testing shooter distance instructions:
+         * 1. put controller into test mode (controller 5) 
+         * 2. measure the distance from the robot to the SPEAKER (NOT SUBWOOFER)
+         * 3. adjust constants.java lines 353 and 273 to test different shooter pivot and intake angles
+         * 4. adjust robotcontainer.java lines 161 and 163 to whatever shooter speed you want (note that it is in percent output mode)
+         * 5. tune constants.java lines 353 and 273 until satisfied
+         * 6. add a line to shooter.java around line 36 following the instructions above
+         * 7. add a line to intake.java around line 38 following the instructions above
+         * 8. the velocity is automatically increased when vision is activated and the robot is a few inches away from the sub, so don't worry about making the velocity 0
+         * 9. make constants.java lines 353 and 273 zero when finished
+         * 10. return robotcontainer.java lines 161 and 163 to 0.25
+         * 
+         */
+
 
         configIntakeCANCoder();
         configIntakeMotor();

@@ -270,7 +270,7 @@ public final class Constants {
 
     /* Shooter Pivot Positions */
     public static final int SHOOTER_PIVOT_RESET = 0;
-    public static final double SHOOTER_PIVOT_SHOOT = 0;
+    public static final double SHOOTER_PIVOT_SHOOT = 0; //FIXME: if you are TESTING shooter setpoints to tune a distance, TEMPORARILY adjust this number and then put it back to zero!!!
     public static final double SHOOTER_PIVOT_AMP = 17; //16.5
     public static final double SHOOTER_PIVOT_CLIMB = 16.5;
     public static final double SHOOTER_PIVOT_ROBOT_DISTANCE = 3.4;
@@ -350,7 +350,7 @@ public final class Constants {
     public static final int INTAKE_PIVOT_RESET = 0;
     public static final double INTAKE_PIVOT_INTAKE = 24;
     public static final int INTAKE_PIVOT_CLIMB = 10;
-    public static final double INTAKE_PIVOT_FEED = 0; //1.75 for robot distance
+    public static final double INTAKE_PIVOT_FEED = 0; //FIXME: in order to TEST intake pivot angles for certain shooting distances, adjust this value TEMPORARILY and then put it back to 0!!
     public static final double INTAKE_PIVOT_ROBOT_DISTANCE = 2.1;
     public static final double INTAKE_PIVOT_PODIUM = 2.7;
 
@@ -380,7 +380,7 @@ public final class Constants {
     public static final int CLIMBER_ID = 10;
 
     /* Climber Inverts and Neutral Mode */
-    public static final InvertedValue CLIMBER_INVERTED = InvertedValue.CounterClockwise_Positive;
+    public static final InvertedValue CLIMBER_INVERTED = InvertedValue.Clockwise_Positive;
     public static final NeutralModeValue CLIMBER_NEUTRAL_MODE = NeutralModeValue.Brake;
 
     /* Climber Current Limits */
@@ -395,13 +395,27 @@ public final class Constants {
     public static final double CLIMBER_D = 0;
 
     /* Climber Positions - Rotations */
-    public static final double CLIMBER_UP = 220;
-    public static final double CLIMBER_DOWN = 440;
+    public static final double CLIMBER_UP = 220; //FIXME: climber up setpoint
+    public static final double CLIMBER_DOWN = 0; //FIXME: climber down setpoint
 
-    public static final double BALANCE_POINT = 340;
+    /*
+     * 
+     * How to tune climber setpoint:
+     * 1. go into phoenix tuner
+     * 2. make sure the robot is enabled in both driver station and phoenix tuner
+     * 3. run the motor in the NEGATIVE direction until it is all the way down
+     * 4. power cycle the robot
+     * 5. run the robot in phoenix tuner in the POSITIVE direction until it is all the way up
+     * 6. look at shuffleboard under the entry "climber position"
+     * 7. put this number in line 398 next to CLIMBER_UP
+     * 8. run the climber in the NEGATIVE direction until it goes to the down position 
+     * 9. look at shuffleboard under the entry "climber position"
+     * 10. put this number in line 399 next to CLIMBER_DOWN
+     * 11. the down setpoint will probably be close to 0 but you might not want to go all the way to 0 in case it overshoots bc we don't want it breaking the string
+     * 
+     */
+
     public static final double CLIMBER_RESET = 0;
-
-    public static final double CLIMBER_DOWN_SPEED = 0.9;
 
     /*============================
                 LEDs

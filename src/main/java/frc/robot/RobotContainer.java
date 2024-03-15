@@ -158,10 +158,12 @@ public class RobotContainer {
 
         // Systems Check Buttons
 
-        testShooter.onTrue(new InstantCommand(() -> m_shooter.shooterPercentOutput(0.25)));
+        testShooter.onTrue(new InstantCommand(() -> m_shooter.shooterPercentOutput(0.25))); //FIXME: adjust this value if you want to test shooting from distances, THEN RETURN TO 0.25
         testShooter.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
-        testShooter.onTrue(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0.25)));
+        testShooter.onTrue(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0.25))); //FIXME: adjust this value if you want to test shooting from distances, THEN RETURN TO 0.25
         testShooter.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
+        testShooter.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(Constants.SHOOTER_PIVOT_SHOOT)));
+        testShooter.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(0)));
 
         testAmp.onTrue(new Amp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
         testReset.onTrue(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
