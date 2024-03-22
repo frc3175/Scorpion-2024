@@ -37,8 +37,8 @@ public class RobotContainer {
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final POVButton isRotatingFast = new POVButton(driver, 270);
     private final POVButton shooterIn = new POVButton(driver, 90);
-    private final JoystickButton driverB = new JoystickButton(driver, XboxController.Button.kB.value);
-    private final JoystickButton forceOuttake = new JoystickButton(driver, XboxController.Button.kY.value);
+    //private final JoystickButton driverB = new JoystickButton(driver, XboxController.Button.kB.value);
+    //private final JoystickButton forceOuttake = new JoystickButton(driver, XboxController.Button.kY.value);
     private final int alignAxis = XboxController.Axis.kRightTrigger.value;
 
     /* Operator Buttons */
@@ -144,15 +144,15 @@ public class RobotContainer {
         b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight, m_Led));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        forceOuttake.onTrue(new InstantCommand(() -> m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT)));
-        forceOuttake.onFalse(new InstantCommand(() -> m_intake.intakePercentOutput(0)));
+        //forceOuttake.onTrue(new InstantCommand(() -> m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT)));
+        //forceOuttake.onFalse(new InstantCommand(() -> m_intake.intakePercentOutput(0)));
 
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));
         back.onTrue(new InstantCommand(() -> m_feeder.feederRun(5)));
         back.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
         back.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
-
         start.onTrue(new LightLed(m_Led, 0, 0, 255, true)).onFalse(new LightLed(m_Led, 255, 0, 0, false));
+        start.onTrue(new InstantCommand(() -> m_shooter.shooterRun(0)));
 
         rightJoystick.onTrue(new ClimbUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
 
@@ -163,7 +163,7 @@ public class RobotContainer {
 
         shooterIn.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(0)));
 
-        driverB.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
+        //driverB.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
 
         // Systems Check Buttons
 
