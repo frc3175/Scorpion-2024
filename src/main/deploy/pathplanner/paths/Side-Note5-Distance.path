@@ -1,0 +1,130 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.8091165144351524,
+        "y": 3.4739174514460607
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.8121808636854964,
+        "y": 3.4678642026664295
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.33,
+        "y": 2.9912282365073994
+      },
+      "prevControl": {
+        "x": 4.4782420287496825,
+        "y": 0.3870386116784968
+      },
+      "nextControl": {
+        "x": 8.350149277467416,
+        "y": 3.0048512470184705
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.33,
+        "y": 2.9912282365073994
+      },
+      "prevControl": {
+        "x": 8.36738868440034,
+        "y": 3.01621005101167
+      },
+      "nextControl": {
+        "x": 4.444953373341353,
+        "y": 0.395375621625086
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.8091165144351524,
+        "y": 3.4739174514460607
+      },
+      "prevControl": {
+        "x": 1.8093879196003584,
+        "y": 3.4831517222294175
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 2.7,
+      "rotationDegrees": -39.48757737951209,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 0.85,
+      "rotationDegrees": 28.325029719403723,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 1.0499999999999998,
+      "rotationDegrees": 33.816939423892826,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [
+    {
+      "name": "Intake",
+      "waypointRelativePos": 0.7,
+      "command": {
+        "type": "sequential",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Shoottake"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 2.0
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "Reset"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 6.0,
+    "maxAcceleration": 5.5,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -42.32095441298936,
+    "rotateFast": true
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": {
+    "rotation": -40.084830335083616,
+    "velocity": 0
+  },
+  "useDefaultConstraints": false
+}

@@ -1,0 +1,145 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.6815533169188448,
+      "y": 4.533870606695207
+    },
+    "rotation": -60.136727263726854
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin Up Shooter"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Side-Note4-Distance"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Interpolate"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Side-Note5-Distance"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Interpolate"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Side-Note6-Distance"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Interpolate"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Gyro Offset Source"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

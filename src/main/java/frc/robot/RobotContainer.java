@@ -99,6 +99,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("Intake", new IntakeNote(m_intake, m_robotState, m_Led));
         NamedCommands.registerCommand("Reset", new ResetIntake(m_intake, m_robotState));
         NamedCommands.registerCommand("Spin Up Shooter", new SpinUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
+        NamedCommands.registerCommand("Interpolate", new InstantInterpolate(m_limelight, m_intake, m_shooter));
         NamedCommands.registerCommand("Shoot", new OuttakeAuto(m_intake, m_robotState));
         NamedCommands.registerCommand("Shoottake", new IntakeAndShoot(m_intake, m_shooter, m_feeder, m_robotState));
         NamedCommands.registerCommand("Reset All", new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));

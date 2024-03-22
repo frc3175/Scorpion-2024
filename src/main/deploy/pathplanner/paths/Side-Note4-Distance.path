@@ -1,0 +1,130 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.6815533169188448,
+        "y": 4.533870606695207
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 0.6846176661691887,
+        "y": 4.527817357915576
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.726328563768236,
+        "y": 0.5627951571541615
+      },
+      "prevControl": {
+        "x": 7.673854663948643,
+        "y": -0.3727371982410335
+      },
+      "nextControl": {
+        "x": 8.742288086301953,
+        "y": 0.5769813994063545
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.726328563768236,
+        "y": 0.5627951571541615
+      },
+      "prevControl": {
+        "x": 8.726599968933444,
+        "y": 0.5720294279375183
+      },
+      "nextControl": {
+        "x": 8.726057158603028,
+        "y": 0.5535608863708047
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.9441046287329846,
+        "y": 3.5789721277069875
+      },
+      "prevControl": {
+        "x": 3.8466720026249646,
+        "y": 1.9838492773773746
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.75,
+      "rotationDegrees": 0.0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 1.75,
+      "rotationDegrees": 0.9349094027032239,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [
+    {
+      "name": "Intake",
+      "waypointRelativePos": 0.5,
+      "command": {
+        "type": "sequential",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Shoottake"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 2.0
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "Reset"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 6.0,
+    "maxAcceleration": 5.5,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -29.27312661577734,
+    "rotateFast": true
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": {
+    "rotation": -61.33838494709397,
+    "velocity": 0
+  },
+  "useDefaultConstraints": false
+}
