@@ -310,6 +310,8 @@ public final class Constants {
     public static final int INTAKE_SUPPLY_CURRENT_THRESHOLD = 30;
     public static final double INTAKE_SUPPLY_TIME_THRESHOLD = 0.1;
 
+    public static final double INTAKING_NOTE_CURRENT = 40;
+
     /* Intake PID Constants */
     public static final double INTAKE_P = 0.01;
     public static final double INTAKE_I = 0;
@@ -427,10 +429,17 @@ public final class Constants {
                 Vision
     ==============================*/
 
-    public static final int PRIORITY_ID = 7;
+    public static final int PRIORITY_ID_RED = 4;
+    public static final int PRIORITY_ID_BLUE = 7;
     public static final double LIMELIGHT_MOUNTING_ANGLE = 28;
     public static final double LIMELIGHT_LENS_HEIGHT = 21.25;
     public static final double TARGET_HEIGHT = 53.88;
+
+    public static final double LIMELIGHT_P = 0.011;
+
+    public static final double ANGLE_TOLERANCE = 5;
+
+    public static final double SHOOTER_SPEED_THRESHOLD = 45;
 
 
 
