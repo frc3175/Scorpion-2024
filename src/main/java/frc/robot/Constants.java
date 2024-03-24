@@ -310,7 +310,7 @@ public final class Constants {
     public static final int INTAKE_SUPPLY_CURRENT_THRESHOLD = 30;
     public static final double INTAKE_SUPPLY_TIME_THRESHOLD = 0.1;
 
-    public static final double INTAKING_NOTE_CURRENT = 40;
+    public static final double INTAKING_NOTE_CURRENT = 43;
 
     /* Intake PID Constants */
     public static final double INTAKE_P = 0.01;

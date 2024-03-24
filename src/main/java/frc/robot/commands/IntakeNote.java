@@ -47,7 +47,7 @@ public class IntakeNote extends Command {
     @Override
     public void execute() {
 
-        if(m_intake.getIntakeStatorCurrent() > Constants.INTAKING_NOTE_CURRENT && m_timer.get() > 0.2) {
+        if(m_intake.getIntakeStatorCurrent() > Constants.INTAKING_NOTE_CURRENT && m_timer.get() > 0.25) {
 
             m_led.setCurrentState(CurrentState.INTAKING_GOT_PIECE);
             m_led.setLEDs(m_led.getCurrentState().r, m_led.getCurrentState().g, m_led.getCurrentState().b);
