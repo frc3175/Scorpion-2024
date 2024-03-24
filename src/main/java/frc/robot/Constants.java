@@ -62,7 +62,7 @@ public final class Constants {
         public static final double AZIMUTH_CURRENT_THRESHOLD_TIME = 0.1;
         public static final boolean AZIMUTH_ENABLE_CURRENT_LIMIT = true;
 
-        public static final int DRIVE_CURRENT_LIMIT = 50;   
+        public static final int DRIVE_CURRENT_LIMIT = 35;   
         public static final int DRIVE_CURRENT_THRESHOLD = 60;
         public static final double DRIVE_CURRENT_THRESHOLD_TIME = 0.1;
         public static final boolean DRIVE_ENABLE_CURRENT_LIMIT = true;

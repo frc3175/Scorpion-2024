@@ -69,7 +69,7 @@ public class SpinUpAndInterpolate extends Command {
 
         double ty = m_limelight.getDistanceToTarget();
 
-        if(ty > 44.25) {
+        if(ty > 75) {
 
             SmartDashboard.putNumber("distance to target subsystem", ty);
 
