@@ -41,7 +41,8 @@ public class RobotContainer {
     //private final JoystickButton forceOuttake = new JoystickButton(driver, XboxController.Button.kY.value);
     private final int alignAxis = XboxController.Axis.kRightTrigger.value;
     private final JoystickButton cop = new JoystickButton(driver, XboxController.Button.kStart.value);
-
+    private final JoystickButton snowPlow = new JoystickButton(driver, XboxController.Button.kBack.value);
+    
     /* Operator Buttons */
     private final JoystickButton amp = new JoystickButton(operator, XboxController.Button.kY.value);
     private final JoystickButton reset = new JoystickButton(operator, XboxController.Button.kA.value);
@@ -152,7 +153,7 @@ public class RobotContainer {
         back.onTrue(new InstantCommand(() -> m_feeder.feederRun(5)));
         back.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
         back.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
-        //start.onTrue(new LightLed(m_Led, 0, 0, 255, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
+        start.onTrue(new LightLed(m_Led, 0, 0, 255, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
         start.onTrue(new InstantCommand(() -> m_shooter.shooterRun(0)));
 
         rightJoystick.onTrue(new ClimbUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
@@ -166,6 +167,8 @@ public class RobotContainer {
 
         cop.onTrue(new LightLed(m_Led, 0, 0, 0, false, true)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
 
+        snowPlow.onTrue(new LightLed(m_Led, 255, 165, 0, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
+        
         //driverB.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
 
         // Systems Check Buttons
