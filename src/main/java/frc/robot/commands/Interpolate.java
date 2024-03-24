@@ -13,7 +13,7 @@ import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.RobotState.BotState;
 
-public class SpinUpAndInterpolate extends Command {
+public class Interpolate extends Command {
 
     private Feeder m_feeder;
     private Shooter m_shooter;
@@ -23,7 +23,7 @@ public class SpinUpAndInterpolate extends Command {
     private LED m_led;
     private Limelight m_limelight;
 
-    public SpinUpAndInterpolate(Feeder feeder, Shooter shooter, Intake intake, Climber climber, RobotState robotState, LED led, Limelight limelight) {
+    public Interpolate(Feeder feeder, Shooter shooter, Intake intake, Climber climber, RobotState robotState, LED led, Limelight limelight) {
 
         m_feeder = feeder;
         m_shooter = shooter;
@@ -43,20 +43,10 @@ public class SpinUpAndInterpolate extends Command {
         m_robotState.setRobotState(BotState.SHOOT);
         m_robotState.setIsAmpState(false);
 
-        if(m_limelight.getDistanceToTarget() > 60) {
-
-            m_feeder.feederRun(Constants.SHOOTER_FAST_SPEED);
-            m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED);
-            m_intake.intakeRun(m_robotState.getRobotState().intakeState.intakeVelocity);
-
-        } else {
-
-            m_feeder.feederRun(m_robotState.getRobotState().feederState.feederVelocity);
-            m_shooter.shooterRun(m_robotState.getRobotState().shooterState.shooterVelocity);
-            m_intake.intakeRun(m_robotState.getRobotState().intakeState.intakeVelocity);
-
-        }
-
+        m_feeder.feederRun(Constants.SHOOTER_FAST_SPEED);
+        m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED);
+        m_intake.intakeRun(m_robotState.getRobotState().intakeState.intakeVelocity);
+        
         m_led.setCurrentState(CurrentState.SHOOTER_READY);
         m_led.setLEDs(m_led.getCurrentState().r, m_led.getCurrentState().g, m_led.getCurrentState().b);
 
@@ -69,14 +59,10 @@ public class SpinUpAndInterpolate extends Command {
 
         double ty = m_limelight.getDistanceToTarget();
 
-        if(ty > 75) {
+        SmartDashboard.putNumber("distance to target subsystem", ty);
 
-            SmartDashboard.putNumber("distance to target subsystem", ty);
-
-            m_shooter.shooterInterpolate(ty);
-            m_intake.interpolateIntake(ty);
-
-        }
+        m_shooter.shooterInterpolate(ty);
+        m_intake.interpolateIntake(ty);
 
         if(m_limelight.isAtTarget()) {
 

@@ -130,7 +130,7 @@ public class RobotContainer {
         intake.onTrue(new IntakeNote(m_intake, m_robotState, m_Led));
         intake.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
-        spinUpShooter.onTrue(new SpinUpAndInterpolate(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led, m_limelight));
+        spinUpShooter.onTrue(new SpinUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
         spinUpShooter.onFalse(new Reset(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led));
 
         outtake.onTrue(new Outtake(m_intake, m_shooter, m_feeder, m_robotState, m_limelight, m_Led, m_swerveDrivetrain));
@@ -146,13 +146,11 @@ public class RobotContainer {
         b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight, m_Led));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        //forceOuttake.onTrue(new InstantCommand(() -> m_intake.intakeRun(Constants.INTAKE_FEED_SHOOT)));
-        //forceOuttake.onFalse(new InstantCommand(() -> m_intake.intakePercentOutput(0)));
-
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));
         back.onTrue(new InstantCommand(() -> m_feeder.feederRun(5)));
         back.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
         back.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
+        
         start.onTrue(new LightLed(m_Led, 0, 0, 255, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
         start.onTrue(new InstantCommand(() -> m_shooter.shooterRun(0)));
 
