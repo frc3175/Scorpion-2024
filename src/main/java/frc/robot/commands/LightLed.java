@@ -10,13 +10,16 @@ public class LightLed extends Command {
   private int b;
   private LED m_LED;
   private boolean flash;
+  private boolean isCop;
+
   /** Creates a new LightCandle. */
-  public LightLed(LED led, int red, int green, int blue, boolean flashing) {
+  public LightLed(LED led, int red, int green, int blue, boolean flashing, boolean copMode) {
     m_LED = led;
     r = red;
     g = green;
     b = blue;
     flash = flashing;
+    isCop = copMode;
     addRequirements(m_LED);
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,10 +39,17 @@ public class LightLed extends Command {
           m_LED.setLEDs(0, 0, 0);
           Timer.delay(0.1);
         }
-        else{
+    else if(isCop){
+          m_LED.setLEDs(0, 0, 255);
+          Timer.delay(0.1);
+          m_LED.setLEDs(255, 0, 0);
+          Timer.delay(0.1);
+        }
+      else{
           m_LED.setLEDs(r, g, b);
         }
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
