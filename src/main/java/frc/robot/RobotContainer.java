@@ -143,7 +143,7 @@ public class RobotContainer {
         x.onTrue(new InstantCommand(() -> m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED)));
         x.onFalse(new ShooterReset(m_intake, m_shooter));
 
-        b.whileTrue(new DistanceLineup(m_shooter, m_intake, m_robotState, m_limelight, m_Led));
+        b.whileTrue(new Interpolate(m_feeder, m_shooter, m_intake, m_climber, m_robotState, m_Led, m_limelight));
         b.onFalse(new ShooterReset(m_intake, m_shooter));
 
         back.onTrue(new InstantCommand(() -> m_shooter.shooterRun(-40)));
@@ -151,8 +151,9 @@ public class RobotContainer {
         back.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
         back.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
         
-        start.onTrue(new LightLed(m_Led, 0, 0, 255, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
+        //start.onTrue(new LightLed(m_Led, 0, 0, 255, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
         start.onTrue(new InstantCommand(() -> m_shooter.shooterRun(0)));
+         start.onTrue(new InstantCommand(() -> m_feeder.feederRun(0)));
 
         rightJoystick.onTrue(new ClimbUp(m_feeder, m_shooter, m_intake, m_climber, m_robotState));
 
@@ -166,7 +167,7 @@ public class RobotContainer {
         cop.onTrue(new LightLed(m_Led, 0, 0, 0, false, true)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
 
         snowPlow.onTrue(new LightLed(m_Led, 255, 165, 0, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
-        
+
         //driverB.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
 
         // Systems Check Buttons

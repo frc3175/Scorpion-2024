@@ -47,8 +47,8 @@ public class Interpolate extends Command {
         m_shooter.shooterRun(Constants.SHOOTER_FAST_SPEED);
         m_intake.intakeRun(m_robotState.getRobotState().intakeState.intakeVelocity);
         
-        m_led.setCurrentState(CurrentState.SHOOTER_READY);
-        m_led.setLEDs(m_led.getCurrentState().r, m_led.getCurrentState().g, m_led.getCurrentState().b);
+        //m_led.setCurrentState(CurrentState.SHOOTER_READY);
+        //m_led.setLEDs(m_led.getCurrentState().r, m_led.getCurrentState().g, m_led.getCurrentState().b);
 
         m_shooter.setInteroplationMode(true);
 

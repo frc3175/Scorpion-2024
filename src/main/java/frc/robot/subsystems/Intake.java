@@ -33,13 +33,18 @@ public class Intake extends SubsystemBase {
         m_intakePivot = new TalonFX(Constants.INTAKE_PIVOT_ID, "elevatoryiboi");
         m_intakeEncoder = new CANcoder(Constants.INTAKE_CANCODER_ID, "elevatoryiboi");
 
-        intakePivotTable.put(39.25, 0.0);
-        intakePivotTable.put(72.25, 2.1);
-        intakePivotTable.put(144.25, 2.7); //FIXME: the values in this line are guesses and inaccurate
+        intakePivotTable.put(40.0, 0.0);
+        intakePivotTable.put(53.5, 1.66);
+        intakePivotTable.put(63.0, 2.83);
+        intakePivotTable.put(83.5, 3.75);
+        intakePivotTable.put(94.0, 3.5);
+        intakePivotTable.put(94.0, 3.5);
+        intakePivotTable.put(142.5, 3.5);
+        //FIXME: the values in this line are guesses and inaccurate
         //FIXME: this is where you add interpolation values. instructions are below
 
 
-        /*
+        /*94
          * 
          * To add a value to the interpolation table, create a new line and copy paste this information
          * intakePivotTable.put(0, 1);

@@ -34,8 +34,13 @@ public class Shooter extends SubsystemBase {
         m_shooterPivot = new TalonFX(Constants.SHOOTER_PIVOT_ID, "elevatoryiboi");
 
         shooterPivotTable.put(39.25, 0.0);
-        shooterPivotTable.put(72.25, 3.4);
-        shooterPivotTable.put(144.25, 5.52); //FIXME: the values in this line are guesses and inaccurate
+        shooterPivotTable.put(53.5, 2.0);
+        shooterPivotTable.put(63.0, 3.4);
+        shooterPivotTable.put(83.5, 4.5);
+        shooterPivotTable.put(109.5, 5.2);
+        shooterPivotTable.put(112.0, 5.5);
+        shooterPivotTable.put(142.5, 6.1);
+        //FIXME: the values in this  are guesses and inaccurate
         //FIXME: this is where you add interpolation values. instructions are below
 
         /*

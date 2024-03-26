@@ -273,7 +273,7 @@ public final class Constants {
     public static final double SHOOTER_PIVOT_SHOOT = 0; //FIXME: if you are TESTING shooter setpoints to tune a distance, TEMPORARILY adjust this number and then put it back to zero!!!
     public static final double SHOOTER_PIVOT_AMP = 17; //16.5
     public static final double SHOOTER_PIVOT_CLIMB = 16.5;
-    public static final double SHOOTER_PIVOT_ROBOT_DISTANCE = 3.4;
+    public static final double SHOOTER_PIVOT_ROBOT_DISTANCE = 0;//3.4
     public static final double SHOOTER_PIVOT_PODIUM = 5.52;
     public static final double AMP_BOOP = 21;
 
@@ -310,7 +310,7 @@ public final class Constants {
     public static final int INTAKE_SUPPLY_CURRENT_THRESHOLD = 30;
     public static final double INTAKE_SUPPLY_TIME_THRESHOLD = 0.1;
 
-    public static final double INTAKING_NOTE_CURRENT = 43;
+    public static final double INTAKING_NOTE_CURRENT = 50;
 
     /* Intake PID Constants */
     public static final double INTAKE_P = 0.01;
@@ -353,7 +353,7 @@ public final class Constants {
     public static final double INTAKE_PIVOT_INTAKE = 24;
     public static final int INTAKE_PIVOT_CLIMB = 10;
     public static final double INTAKE_PIVOT_FEED = 0; //FIXME: in order to TEST intake pivot angles for certain shooting distances, adjust this value TEMPORARILY and then put it back to 0!!
-    public static final double INTAKE_PIVOT_ROBOT_DISTANCE = 2.1;
+    public static final double INTAKE_PIVOT_ROBOT_DISTANCE = 0;//2.1
     public static final double INTAKE_PIVOT_PODIUM = 2.7;
 
     /* Intake Pivot Motion Magic */
@@ -432,7 +432,7 @@ public final class Constants {
     public static final int PRIORITY_ID_RED = 4;
     public static final int PRIORITY_ID_BLUE = 7;
     public static final double LIMELIGHT_MOUNTING_ANGLE = 28;
-    public static final double LIMELIGHT_LENS_HEIGHT = 21.25;
+    public static final double LIMELIGHT_LENS_HEIGHT = 20.0625;
     public static final double TARGET_HEIGHT = 53.88;
 
     public static final double LIMELIGHT_P = 0.011;
