@@ -398,7 +398,7 @@ public final class Constants {
 
     /* Climber Positions - Rotations */
     public static final double CLIMBER_UP = 220; //FIXME: climber up setpoint
-    public static final double CLIMBER_DOWN = 50; //FIXME: climber down setpoint
+    public static final double CLIMBER_DOWN = 20; //FIXME: climber down setpoint
 
     /*
      * 

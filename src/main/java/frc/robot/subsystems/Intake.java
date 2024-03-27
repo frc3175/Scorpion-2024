@@ -36,8 +36,8 @@ public class Intake extends SubsystemBase {
         intakePivotTable.put(40.0, 0.0);
         intakePivotTable.put(53.5, 1.66);
         intakePivotTable.put(63.0, 2.83);
-        intakePivotTable.put(83.5, 3.75);
-        intakePivotTable.put(94.0, 3.5);
+        intakePivotTable.put(83.5, 3.0);
+        intakePivotTable.put(94.0, 3.25);
         intakePivotTable.put(94.0, 3.5);
         intakePivotTable.put(142.5, 3.5);
         //FIXME: the values in this line are guesses and inaccurate
