@@ -102,7 +102,8 @@ public class SwerveDrive extends Command {
             !m_robotCentricSup.getAsBoolean(), 
             true,
             m_isEvading.getAsBoolean(),
-            m_isLocked.getAsBoolean()
+            m_isLocked.getAsBoolean(),
+            isAligning
         );
 
         SmartDashboard.putNumber("DRIVETRAIN TX", m_tx.getAsDouble());
