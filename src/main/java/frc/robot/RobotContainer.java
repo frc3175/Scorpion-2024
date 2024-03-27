@@ -93,6 +93,7 @@ public class RobotContainer {
                 () -> false,
                 () -> isRotatingFast.getAsBoolean(),
                 () -> m_limelight.getTX(),
+                () -> m_limelight.getDistanceToTarget(),
                 () -> driver.getRawAxis(alignAxis)
             )
         );

@@ -170,13 +170,21 @@ public class SwerveDrivetrain extends SubsystemBase {
         }
     }
 
-    public double alignToTarget(double tx) {
+    public double alignToTarget(double tx, double distanceToTarget) {
 
         double kP = Constants.LIMELIGHT_P;
 
+        double distanceToGoal = distanceToTarget;
+        double cameraOffset = Constants.CAMERA_OFFSET;
+        double errorRadians = Math.atan(distanceToGoal/cameraOffset);
+        double errorDegrees = errorRadians * (180/3.14159);
+
+        double cameraToTargetDegrees = tx;
+        double centerToTargetDegrees = cameraToTargetDegrees + errorDegrees;
+
         // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
         // your limelight 3 feed, tx should return roughly 31 degrees.
-        double targetingAngularVelocity = tx * kP;
+        double targetingAngularVelocity = centerToTargetDegrees * kP;
 
         // convert to radians per second for our drive method
         targetingAngularVelocity *= (Constants.MAX_ANGULAR_VELOCITY);

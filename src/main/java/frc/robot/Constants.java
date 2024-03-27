@@ -441,6 +441,9 @@ public final class Constants {
 
     public static final double SHOOTER_SPEED_THRESHOLD = 45;
 
+    //FIXME: distance between camera and center of shooter in inches
+    public static final double CAMERA_OFFSET = 2;
+
 
 
 
