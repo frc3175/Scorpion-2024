@@ -432,7 +432,7 @@ public final class Constants {
     public static final int PRIORITY_ID_RED = 4;
     public static final int PRIORITY_ID_BLUE = 7;
     public static final double LIMELIGHT_MOUNTING_ANGLE = 28;
-    public static final double LIMELIGHT_LENS_HEIGHT = 20.0625;
+    public static final double LIMELIGHT_LENS_HEIGHT = 19.8125;
     public static final double TARGET_HEIGHT = 53.88;
 
     public static final double LIMELIGHT_P = 0.011;
@@ -442,7 +442,7 @@ public final class Constants {
     public static final double SHOOTER_SPEED_THRESHOLD = 45;
 
     //FIXME: distance from camera lens to center of robot in inches (must be changed even if you changed it in the other branch)
-    public static final double CAMERA_OFFSET = 3;
+    public static final double CAMERA_OFFSET = 2.375;
 
 
 
