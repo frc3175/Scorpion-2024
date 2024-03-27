@@ -441,6 +441,9 @@ public final class Constants {
 
     public static final double SHOOTER_SPEED_THRESHOLD = 45;
 
+    //FIXME: distance from camera lens to center of robot in inches (must be changed even if you changed it in the other branch)
+    public static final double CAMERA_OFFSET = 3;
+
 
 
 

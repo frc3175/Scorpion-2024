@@ -31,7 +31,8 @@ public class SnapToTarget extends Command {
             false,
             true,
             false,
-            false
+            false,
+            true
         );
 
     }

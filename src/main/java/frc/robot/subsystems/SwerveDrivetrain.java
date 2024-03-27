@@ -18,6 +18,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -65,7 +66,7 @@ public class SwerveDrivetrain extends SubsystemBase {
                                         this);
     }
 
-    public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop, boolean isEvading, boolean isLocked) {
+    public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop, boolean isEvading, boolean isLocked, boolean isTrackingTarget) {
         
         if(isLocked) {
 
@@ -86,6 +87,8 @@ public class SwerveDrivetrain extends SubsystemBase {
 
             if(isEvading && fieldRelative) {
                 centerOfRotation = getCenterOfRotation(translation.getAngle(), rotation);
+            } else if(isTrackingTarget) {
+                centerOfRotation = new Translation2d(-Units.inchesToMeters(Constants.CAMERA_OFFSET), 0);
             } else {
                 centerOfRotation = new Translation2d();
             }
