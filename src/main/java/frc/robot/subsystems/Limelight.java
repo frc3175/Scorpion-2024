@@ -134,13 +134,17 @@ public class Limelight extends SubsystemBase {
         double area = ta.getDouble(0.0);
         double availableID = tid.getDouble(0.0);
 
+        double oldPriorityID = priorityID;
+
         if(availableID == 3 || availableID == 4) {
             priorityID = Constants.PRIORITY_ID_RED;
         } else if(availableID == 7 || availableID == 8) {
             priorityID = Constants.PRIORITY_ID_BLUE;
         }
 
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("priorityid").setNumber(priorityID);
+        if(oldPriorityID != priorityID) {
+            NetworkTableInstance.getDefault().getTable("limelight").getEntry("priorityid").setNumber(priorityID);
+        }
 
         //post to smart dashboard periodically
         SmartDashboard.putNumber("LimelightX", x);
