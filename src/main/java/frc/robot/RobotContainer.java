@@ -55,6 +55,7 @@ public class RobotContainer {
     private final JoystickButton b = new JoystickButton(operator, XboxController.Button.kB.value);
     private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
     private final JoystickButton rightJoystick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
+    private final POVButton passing = new POVButton(operator, 90);
 
     /* Systems Check Buttons */
    private final JoystickButton testAmp = new JoystickButton(test, XboxController.Button.kY.value);
@@ -167,6 +168,15 @@ public class RobotContainer {
         cop.onTrue(new LightLed(m_Led, 0, 0, 0, false, true)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
 
         snowPlow.onTrue(new LightLed(m_Led, 255, 165, 0, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
+
+        passing.onTrue(new InstantCommand(() -> m_shooter.shooterRun(40)));
+        passing.onTrue(new InstantCommand(() -> m_feeder.feederRun(40)));
+        passing.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(3.0)));
+        passing.onTrue(new InstantCommand(() -> m_intake.intakePivot(2.2)));
+        passing.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
+        passing.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
+        passing.onFalse(new InstantCommand(() -> m_shooter.shooterPivot(0.0)));
+        passing.onFalse(new InstantCommand(() -> m_intake.intakePivot(0.0)));
 
         //driverB.whileTrue(new SnapToTarget(m_limelight, m_swerveDrivetrain));
 

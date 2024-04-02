@@ -52,12 +52,6 @@ public class Reset extends Command {
     @Override 
     public void execute() {
 
-        while(m_robotState.getRobotState() == BotState.AMP && m_timer.get() < 0.3) {
-
-            m_shooter.shooterPivot(Constants.AMP_BOOP);
-
-        }
-
         m_robotState.setRobotState(BotState.RESET);
 
         m_feeder.feederRunPercentOutput(m_robotState.getRobotState().feederState.feederVelocity);

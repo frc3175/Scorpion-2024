@@ -265,7 +265,7 @@ public final class Constants {
 
     /* Shooter Pivot Motion Magic Constants */
     public static final double SHOOTER_PIVOT_CRUISE_VELOCITY = 75;
-    public static final double SHOOTER_PIVOT_ACCELERATION = 140;
+    public static final double SHOOTER_PIVOT_ACCELERATION = 80;
     //public static final double SHOOTER_PIVOT_JERK = 80;
 
     /* Shooter Pivot Positions */
@@ -398,7 +398,7 @@ public final class Constants {
 
     /* Climber Positions - Rotations */
     public static final double CLIMBER_UP = 220; //FIXME: climber up setpoint
-    public static final double CLIMBER_DOWN = 20; //FIXME: climber down setpoint
+    public static final double CLIMBER_DOWN = 10; //FIXME: climber down setpoint
 
     /*
      * 
