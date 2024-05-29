@@ -35,7 +35,8 @@ public class Shooter extends SubsystemBase {
 
         shooterPivotTable.put(39.25, 0.0);
         shooterPivotTable.put(53.5, 2.0);
-        shooterPivotTable.put(63.0, 4.0);
+        shooterPivotTable.put(63.0, 3.0);
+        shooterPivotTable.put(70.0, 3.5);
         shooterPivotTable.put(83.5, 4.5);
         shooterPivotTable.put(109.5, 5.2);
         shooterPivotTable.put(112.0, 5.5);

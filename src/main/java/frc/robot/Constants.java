@@ -205,7 +205,7 @@ public final class Constants {
 
     /* Feeder Velocity Setpoints - Rotations per Second */
     public static final double FEEDER_RESET = 0;
-    public static final double FEEDER_SHOOT = 50;
+    public static final double FEEDER_SHOOT = 30; //50 //TODO: adjust feeder speed
     public static final double FEEDER_AMP = 40;
     public static final double FEEDER_OUTTAKE = 70;
 
@@ -234,7 +234,7 @@ public final class Constants {
     public static final double SHOOTER_A = 0;
 
     /* Shooter Velocities - Rotations per Second */
-    public static final double SHOOTER_SHOOT = 50;
+    public static final double SHOOTER_SHOOT = 30; //58 //TODO: fix shooter speed
     public static final double SHOOTER_FAST_SPEED = 70;
     public static final double SHOOTER_AMP = 0;
     public static final double SHOOTER_RESET = 0;
@@ -431,8 +431,8 @@ public final class Constants {
 
     public static final int PRIORITY_ID_RED = 4;
     public static final int PRIORITY_ID_BLUE = 7;
-    public static final double LIMELIGHT_MOUNTING_ANGLE = 28;
-    public static final double LIMELIGHT_LENS_HEIGHT = 19.8125;
+    public static final double LIMELIGHT_MOUNTING_ANGLE = 25;
+    public static final double LIMELIGHT_LENS_HEIGHT = 13.75;
     public static final double TARGET_HEIGHT = 53.88;
 
     public static final double LIMELIGHT_P = 0.011;
@@ -442,7 +442,9 @@ public final class Constants {
     public static final double SHOOTER_SPEED_THRESHOLD = 45;
 
     //FIXME: distance from camera lens to center of robot in inches (must be changed even if you changed it in the other branch)
-    public static final double CAMERA_OFFSET = 2.375;
+    public static final double CAMERA_OFFSET = -9.5;
+
+    public static final double LIMELIGHT_BACK_OFFSET = 5.5;
 
 
 

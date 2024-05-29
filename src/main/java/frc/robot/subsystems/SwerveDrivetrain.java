@@ -88,7 +88,7 @@ public class SwerveDrivetrain extends SubsystemBase {
             if(isEvading && fieldRelative) {
                 centerOfRotation = getCenterOfRotation(translation.getAngle(), rotation);
             } else if(isTrackingTarget) {
-                centerOfRotation = new Translation2d(-Units.inchesToMeters(Constants.CAMERA_OFFSET), 0);
+                centerOfRotation = new Translation2d();
             } else {
                 centerOfRotation = new Translation2d();
             }
@@ -173,13 +173,21 @@ public class SwerveDrivetrain extends SubsystemBase {
         }
     }
 
-    public double alignToTarget(double tx) {
+    public double alignToTarget(double tx, double distanceToTarget) {
 
         double kP = Constants.LIMELIGHT_P;
 
+        double distanceToGoal = distanceToTarget;
+        double cameraOffset = Constants.CAMERA_OFFSET;
+        double errorRadians = Math.asin(cameraOffset/distanceToGoal);
+        double errorDegrees = errorRadians * (180/3.14159);
+
+        double cameraToTargetDegrees = tx;
+        double centerToTargetDegrees = cameraToTargetDegrees + errorDegrees;
+
         // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
         // your limelight 3 feed, tx should return roughly 31 degrees.
-        double targetingAngularVelocity = tx * kP;
+        double targetingAngularVelocity = centerToTargetDegrees * kP;
 
         // convert to radians per second for our drive method
         targetingAngularVelocity *= (Constants.MAX_ANGULAR_VELOCITY);
@@ -188,6 +196,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         targetingAngularVelocity *= -1.0;
 
         return targetingAngularVelocity;
+
 
     }
 

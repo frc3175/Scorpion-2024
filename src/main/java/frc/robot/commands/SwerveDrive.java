@@ -25,6 +25,7 @@ public class SwerveDrive extends Command {
     private BooleanSupplier m_isLocked;
     private BooleanSupplier m_isRotatingFast;
     private DoubleSupplier m_tx;
+    private DoubleSupplier m_distanceToTarget;
     private DoubleSupplier m_isAligning;
 
     public SwerveDrive(SwerveDrivetrain swerveDrivetrain, 
@@ -36,6 +37,7 @@ public class SwerveDrive extends Command {
                        BooleanSupplier isLocked,
                        BooleanSupplier isRotatingFast,
                        DoubleSupplier tx,
+                       DoubleSupplier distanceToTarget,
                        DoubleSupplier isAligning) {
 
         m_swerveDrivetrain = swerveDrivetrain;
@@ -49,6 +51,7 @@ public class SwerveDrive extends Command {
         m_isLocked = isLocked;
         m_isRotatingFast = isRotatingFast;
         m_tx = tx;
+        m_distanceToTarget = distanceToTarget;
         m_isAligning = isAligning;
 
         m_xAxisLimiter = new SlewRateLimiter(Constants.RATE_LIMITER);
@@ -90,7 +93,7 @@ public class SwerveDrive extends Command {
         double rAxisActual;
 
         if(isAligning) {
-            rAxisActual = m_swerveDrivetrain.alignToTarget(m_tx.getAsDouble());
+            rAxisActual = m_swerveDrivetrain.alignToTarget(m_tx.getAsDouble(), m_distanceToTarget.getAsDouble());
         } else {
             rAxisActual = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY * -1;
         }

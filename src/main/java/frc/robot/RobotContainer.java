@@ -41,7 +41,7 @@ public class RobotContainer {
     //private final JoystickButton forceOuttake = new JoystickButton(driver, XboxController.Button.kY.value);
     private final int alignAxis = XboxController.Axis.kRightTrigger.value;
     private final JoystickButton cop = new JoystickButton(driver, XboxController.Button.kStart.value);
-    private final JoystickButton snowPlow = new JoystickButton(driver, XboxController.Button.kBack.value);
+    private final JoystickButton ampBoop = new JoystickButton(driver, XboxController.Button.kBack.value);
     
     /* Operator Buttons */
     private final JoystickButton amp = new JoystickButton(operator, XboxController.Button.kY.value);
@@ -94,6 +94,7 @@ public class RobotContainer {
                 () -> false,
                 () -> isRotatingFast.getAsBoolean(),
                 () -> m_limelight.getTX(),
+                () -> m_limelight.getDistanceToTarget(),
                 () -> driver.getRawAxis(alignAxis)
             )
         );
@@ -167,12 +168,12 @@ public class RobotContainer {
 
         cop.onTrue(new LightLed(m_Led, 0, 0, 0, false, true)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
 
-        snowPlow.onTrue(new LightLed(m_Led, 255, 165, 0, true, false)).onFalse(new LightLed(m_Led, 255, 0, 0, false, false));
+        ampBoop.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(Constants.AMP_BOOP + 1))).onFalse(new InstantCommand(() -> m_shooter.shooterPivot(Constants.SHOOTER_PIVOT_AMP)));
 
         passing.onTrue(new InstantCommand(() -> m_shooter.shooterRun(40)));
         passing.onTrue(new InstantCommand(() -> m_feeder.feederRun(40)));
-        passing.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(3.0)));
-        passing.onTrue(new InstantCommand(() -> m_intake.intakePivot(2.2)));
+        passing.onTrue(new InstantCommand(() -> m_shooter.shooterPivot(0.0)));
+        passing.onTrue(new InstantCommand(() -> m_intake.intakePivot(0.0)));
         passing.onFalse(new InstantCommand(() -> m_shooter.shooterPercentOutput(0)));
         passing.onFalse(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
         passing.onFalse(new InstantCommand(() -> m_shooter.shooterPivot(0.0)));
